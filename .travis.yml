@@ -11,6 +11,7 @@ install:
   - export CXX="g++-4.8"
   - sh .install-lazperf.sh
   - sh .install-libght.sh
+  - export LD_LIBRARY_PATH=/usr/local/lib
 
 addons:
   postgresql: "9.3" # for "installcheck"
