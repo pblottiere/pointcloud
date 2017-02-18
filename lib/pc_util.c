@@ -409,3 +409,17 @@ pc_bounds_to_geometry_wkb(const PCBOUNDS *bounds, uint32_t srid, size_t *wkbsize
 
 	return wkb;
 }
+
+PCBOX3D *
+pc_bounds_to_box3d(const PCBOUNDS *bounds, uint32_t srid)
+{
+	PCBOX3D *box = (PCBOX3D *) pcalloc(sizeof(PCBOX3D));
+	box->xmin = bounds->xmin;
+	box->ymin = bounds->ymin;
+	box->zmin = bounds->zmin;
+	box->xmax = bounds->xmax;
+	box->ymax = bounds->ymax;
+	box->zmax = bounds->zmax;
+	box->srid = srid;
+	return box;
+}

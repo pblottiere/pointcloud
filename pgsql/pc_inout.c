@@ -32,6 +32,7 @@ Datum pcpoint_as_text(PG_FUNCTION_ARGS);
 Datum pcpatch_as_text(PG_FUNCTION_ARGS);
 Datum pcpoint_as_bytea(PG_FUNCTION_ARGS);
 Datum pcpatch_bytea_envelope(PG_FUNCTION_ARGS);
+Datum pcpatch_box3d(PG_FUNCTION_ARGS);
 
 
 static void
@@ -312,6 +313,15 @@ Datum pcpatch_bytea_envelope(PG_FUNCTION_ARGS)
 	pcfree(bytes);
 
 	PG_RETURN_BYTEA_P(wkb);
+}
+
+PG_FUNCTION_INFO_V1(pcpatch_box3d);
+Datum pcpatch_box3d(PG_FUNCTION_ARGS)
+{
+	SERIALIZED_PATCH *serpatch = PG_GETHEADER_SERPATCH_P(0);
+	PCSCHEMA *schema = pc_schema_from_pcid(serpatch->pcid, fcinfo);
+	PCBOX3D *box = pc_bounds_to_box3d(&serpatch->bounds, schema->srid);
+	PG_RETURN_POINTER(box);
 }
 
 PG_FUNCTION_INFO_V1(pc_typmod_in);
