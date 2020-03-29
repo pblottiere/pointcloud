@@ -20,7 +20,7 @@ script:
   - sudo apt-get install -q postgresql-$POSTGRESQL_VERSION-postgis-$POSTGIS_VERSION
   - sudo apt-get install -q libcunit1-dev valgrind g++
   - sudo pg_dropcluster --stop $POSTGRESQL_VERSION main
-  - sudo rm -rf /etc/postgresql/$POSTGRESQL_VERSION /var/lib/postgresql/$POSTGRESQL_VERSION /var/ramfs/postgresql/$POSTGRESQL_VERSION
+  - sudo rm -rf /etc/postgresql/* /var/lib/postgresql/* /var/ramfs/postgresql/*
   - ls /etc/postgresql/
   - sudo pg_createcluster -u postgres $POSTGRESQL_VERSION main --start -- --auth-local trust --auth-host password
   - export PGPORT=$(pg_lsclusters | grep $POSTGRESQL_VERSION | awk '{print $3}')
