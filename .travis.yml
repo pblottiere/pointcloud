@@ -17,6 +17,7 @@ script:
   - sudo service postgresql stop
   - sudo apt-get remove postgresql* -y
   - sudo apt-get install -q postgresql-server-dev-$POSTGRESQL_VERSION postgresql-client-$POSTGRESQL_VERSION postgresql-$POSTGRESQL_VERSION-postgis-$POSTGIS_VERSION libcunit1-dev valgrind g++
+  - if [[ $POSTGRESQL_VERSION == '9.6' ]]; then sudo apt-get install -y postgresql-contrib-9.6; fi;
   - sudo pg_dropcluster --stop $POSTGRESQL_VERSION main
   - sudo rm -rf /etc/postgresql/$POSTGRESQL_VERSION /var/lib/postgresql/$POSTGRESQL_VERSION
   - sudo pg_createcluster -u postgres $POSTGRESQL_VERSION main --start -- --auth-local trust --auth-host password
