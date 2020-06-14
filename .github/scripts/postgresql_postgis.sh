@@ -9,5 +9,6 @@ sudo apt-get install -q postgresql-server-dev-$POSTGRESQL_VERSION postgresql-cli
 sudo pg_dropcluster --stop $POSTGRESQL_VERSION main
 sudo rm -rf /etc/postgresql/$POSTGRESQL_VERSION /var/lib/postgresql/$POSTGRESQL_VERSION
 sudo pg_createcluster -u postgres $POSTGRESQL_VERSION main --start -- --auth-local trust --auth-host password
+sudo cat /etc/postgresql/$POSTGRESQL_VERSION/main/pg_hba.conf
 sudo /etc/init.d/postgresql start $POSTGRESQL_VERSION || sudo journalctl -xe
 psql -c 'CREATE ROLE runner SUPERUSER LOGIN CREATEDB;' -U postgres
