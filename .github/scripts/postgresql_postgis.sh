@@ -11,4 +11,4 @@ sudo rm -rf /etc/postgresql/$POSTGRESQL_VERSION /var/lib/postgresql/$POSTGRESQL_
 sudo pg_createcluster -u postgres $POSTGRESQL_VERSION main --start -- --auth-local trust --auth-host trust
 sudo cat /etc/postgresql/$POSTGRESQL_VERSION/main/pg_hba.conf
 sudo /etc/init.d/postgresql start $POSTGRESQL_VERSION || sudo journalctl -xe
-psql -h 127.0.0.1 -c 'CREATE ROLE runner SUPERUSER LOGIN CREATEDB;' -U postgres
+sudo psql -h 127.0.0.1 -c 'CREATE ROLE runner SUPERUSER LOGIN CREATEDB;' -U postgres
