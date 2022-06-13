@@ -93,15 +93,15 @@ Datum pcpatch_transform(PG_FUNCTION_ARGS)
   PCSCHEMA *nschema = pc_schema_from_pcid(pcid, fcinfo);
 
   // fast path to setpcid if no data transformation is required
-
-  if (pc_schema_same_interpretations(oschema, nschema))
-  {
-    serpatch = pcpatch_set_schema(serpa, oschema, nschema, def);
-    if (!serpatch)
-      PG_RETURN_NULL();
-    PG_RETURN_POINTER(serpatch);
-  }
-  else
+  // ERROR!!!
+  // if (pc_schema_same_interpretations(oschema, nschema))
+  // {
+  //   serpatch = pcpatch_set_schema(serpa, oschema, nschema, def);
+  //   if (!serpatch)
+  //     PG_RETURN_NULL();
+  //   PG_RETURN_POINTER(serpatch);
+  // }
+  // else
   {
     PCPATCH *patch, *paout;
 
